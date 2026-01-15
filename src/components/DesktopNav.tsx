@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, Search, ShoppingCart, Sparkles, LogOut } from "lucide-react";
+import { Home, Search, ShoppingCart, Sparkles, LogOut, Menu } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
@@ -13,17 +13,28 @@ const navItems = [
   { path: "/ai", icon: Sparkles, label: "AI Assistant" },
 ];
 
-export function DesktopNav() {
+interface DesktopNavProps {
+  onMenuClick?: () => void;
+}
+
+export function DesktopNav({ onMenuClick }: DesktopNavProps) {
   const location = useLocation();
   const { totalItems } = useCart();
   const { user, logout } = useAuth();
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 hidden border-b border-border bg-card/95 backdrop-blur-lg md:block">
+    <header className="fixed left-0 right-0 top-0 z-40 hidden border-b border-border bg-card/95 backdrop-blur-lg md:block">
       <div className="container flex h-16 items-center justify-between">
-        <Link to="/" className="flex items-center gap-3">
-          <img src={logo} alt="ClearChoice" className="h-10 w-auto" />
-        </Link>
+        <div className="flex items-center gap-4">
+          {onMenuClick && (
+            <Button variant="ghost" size="icon" onClick={onMenuClick}>
+              <Menu className="h-5 w-5" />
+            </Button>
+          )}
+          <Link to="/" className="flex items-center gap-3">
+            <img src={logo} alt="ClearChoice" className="h-8 w-auto object-contain" />
+          </Link>
+        </div>
 
         <nav className="flex items-center gap-1">
           {navItems.map((item) => {

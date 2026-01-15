@@ -3,13 +3,19 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Search, Sparkles, ShoppingCart, TrendingDown, Zap, Target } from "lucide-react";
 import logo from "@/assets/logo.png";
+import { PlatformLogosRow } from "@/components/PlatformLogos";
+import { AIQuickActions } from "@/components/AIQuickActions";
 
 export default function Home() {
   return (
     <div className="min-h-screen gradient-hero">
       {/* Hero Section */}
       <section className="container flex flex-col items-center px-4 pb-8 pt-8 text-center md:pt-12">
-        <img src={logo} alt="ClearChoice" className="mb-6 h-20 w-auto md:h-24" />
+        <img 
+          src={logo} 
+          alt="ClearChoice" 
+          className="mb-6 h-16 w-auto md:h-20 object-contain drop-shadow-sm" 
+        />
         
         <h1 className="mb-3 text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
           Compare smarter.{" "}
@@ -36,6 +42,27 @@ export default function Home() {
             </Link>
           </Button>
         </div>
+      </section>
+
+      {/* Platform Logos Section */}
+      <section className="container px-4 py-6">
+        <p className="mb-4 text-center text-sm text-muted-foreground">
+          Trusted platforms we compare
+        </p>
+        <PlatformLogosRow />
+      </section>
+
+      {/* AI Quick Actions Section */}
+      <section className="container px-4 py-6">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-xl font-semibold text-foreground">
+            Try AI Shopping Goals
+          </h2>
+          <Link to="/ai" className="text-sm text-primary hover:underline">
+            View all →
+          </Link>
+        </div>
+        <AIQuickActions />
       </section>
 
       {/* Features Section */}
@@ -106,18 +133,6 @@ export default function Home() {
           </div>
         </Card>
       </section>
-
-      {/* Platform Logos */}
-      <section className="container px-4 py-8">
-        <p className="mb-4 text-center text-sm text-muted-foreground">
-          Compare prices across
-        </p>
-        <div className="flex items-center justify-center gap-6">
-          <PlatformBadge name="Blinkit" color="bg-platform-blinkit" />
-          <PlatformBadge name="Zepto" color="bg-platform-zepto" />
-          <PlatformBadge name="Instamart" color="bg-platform-instamart" />
-        </div>
-      </section>
     </div>
   );
 }
@@ -148,14 +163,5 @@ function FeatureCard({
       <h3 className="mb-1 font-semibold text-foreground">{title}</h3>
       <p className="text-sm text-muted-foreground">{description}</p>
     </Card>
-  );
-}
-
-function PlatformBadge({ name, color }: { name: string; color: string }) {
-  return (
-    <div className="flex items-center gap-2 rounded-full bg-card px-4 py-2 shadow-sm">
-      <div className={`h-3 w-3 rounded-full ${color}`} />
-      <span className="text-sm font-medium text-foreground">{name}</span>
-    </div>
   );
 }
