@@ -1,19 +1,15 @@
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { Home, Search, ShoppingCart, Sparkles } from "lucide-react";
+import { ShoppingCart, Menu } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import logo from "@/assets/logo.png";
 
-const navItems = [
-  { path: "/", icon: Home, label: "Home" },
-  { path: "/compare", icon: Search, label: "Compare" },
-  { path: "/cart", icon: ShoppingCart, label: "Cart" },
-  { path: "/ai", icon: Sparkles, label: "AI" },
-];
+interface MobileHeaderProps {
+  onMenuClick?: () => void;
+}
 
-export function MobileHeader() {
+export function MobileHeader({ onMenuClick }: MobileHeaderProps) {
   const location = useLocation();
   const { totalItems } = useCart();
 
@@ -24,9 +20,16 @@ export function MobileHeader() {
 
   return (
     <header className="sticky top-0 z-40 flex items-center justify-between border-b border-border bg-card/95 px-4 py-3 backdrop-blur-lg md:hidden">
-      <Link to="/" className="flex items-center">
-        <img src={logo} alt="ClearChoice" className="h-8 w-auto" />
-      </Link>
+      <div className="flex items-center gap-2">
+        {onMenuClick && (
+          <Button variant="ghost" size="icon" onClick={onMenuClick} className="h-8 w-8">
+            <Menu className="h-5 w-5" />
+          </Button>
+        )}
+        <Link to="/" className="flex items-center">
+          <img src={logo} alt="ClearChoice" className="h-8 w-auto" />
+        </Link>
+      </div>
       
       <Link to="/cart" className="relative">
         <ShoppingCart className="h-6 w-6 text-foreground" />

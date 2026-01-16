@@ -2,13 +2,19 @@ import { Link } from "react-router-dom";
 import { AppLayout } from "@/components/AppLayout";
 import { useCart } from "@/contexts/CartContext";
 import { PlatformComparison } from "@/components/PlatformComparison";
+import { SmartCartSuggestions } from "@/components/SmartCartSuggestions";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { platforms, getBestPrice, Platform } from "@/lib/mockData";
-import { Plus, Minus, Trash2, ShoppingBag, ArrowRight } from "lucide-react";
+import { platforms, getBestPrice, Platform, formatUnitPrice } from "@/lib/mockData";
+import { Plus, Minus, Trash2, ShoppingBag, ArrowRight, ExternalLink } from "lucide-react";
+import { toast } from "sonner";
 
 export default function Cart() {
   const { cart, updateQuantity, removeFromCart, clearCart } = useCart();
+
+  const handleRedirectCart = () => {
+    toast.info("Cart redirect feature coming soon! This will open platform apps with your cart.");
+  };
 
   if (cart.length === 0) {
     return (
@@ -54,6 +60,7 @@ export default function Cart() {
             <h2 className="font-semibold text-foreground">Items</h2>
             {cart.map((item) => {
               const bestDeal = getBestPrice(item.product);
+              const unitPriceInfo = formatUnitPrice(item.product, bestDeal.platform);
               return (
                 <Card key={item.product.id} className="p-4">
                   <div className="flex items-center gap-4">
@@ -66,7 +73,10 @@ export default function Cart() {
                         {item.product.name}
                       </h3>
                       <p className="text-sm text-muted-foreground">
-                        {item.product.unit} • From ₹{bestDeal.price}
+                        {item.product.unit} • ₹{bestDeal.price}
+                      </p>
+                      <p className="text-xs text-primary font-medium">
+                        {unitPriceInfo}
                       </p>
                     </div>
 
@@ -107,19 +117,24 @@ export default function Cart() {
             })}
           </div>
 
-          {/* Platform Comparison */}
-          <div>
+          {/* Platform Comparison & Smart Suggestions */}
+          <div className="space-y-6">
             <PlatformComparison />
             
-            <div className="mt-6">
-              <Button asChild variant="hero" size="lg" className="w-full">
-                <Link to="/ai">
-                  Optimize with AI
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
+            <SmartCartSuggestions />
+            
+            <div>
+              <Button 
+                variant="hero" 
+                size="lg" 
+                className="w-full"
+                onClick={handleRedirectCart}
+              >
+                <ExternalLink className="h-4 w-4" />
+                Redirect Cart
               </Button>
               <p className="mt-2 text-center text-xs text-muted-foreground">
-                Let AI find even better deals by splitting your order
+                Opens your optimized cart in the platform app
               </p>
             </div>
           </div>

@@ -5,10 +5,15 @@ import { Search, Sparkles, ShoppingCart, TrendingDown, Zap, Target } from "lucid
 import logo from "@/assets/logo.png";
 import { PlatformLogosRow } from "@/components/PlatformLogos";
 import { AIQuickActions } from "@/components/AIQuickActions";
+import { LocationSelector } from "@/components/LocationSelector";
+
 export default function Home() {
   return <div className="min-h-screen gradient-hero">
+      {/* Location Selector */}
+      <LocationSelector />
+      
       {/* Hero Section */}
-      <section className="container flex flex-col items-center px-4 pb-8 pt-8 text-center md:pt-12">
+      <section className="container flex flex-col items-center px-4 pb-8 pt-4 text-center md:pt-8">
         <img alt="ClearChoice" className="mb-6 h-16 w-auto md:h-20 object-contain drop-shadow-sm" src="/lovable-uploads/ebafbcf3-4a8e-4baf-bbfd-0a2f2042aefd.png" />
         
         <h1 className="mb-3 text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
