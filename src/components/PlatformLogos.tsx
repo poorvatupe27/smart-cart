@@ -27,12 +27,12 @@ export function PlatformLogo({ platform, size = "md", showName = true, className
       textColor: "text-primary-foreground",
       initial: "Z",
     },
-    instamart: {
-      name: "Smart",
-      bgColor: "bg-[#FF6600]",
-      textColor: "text-primary-foreground",
-      initial: "S",
-    },
+  instamart: {
+    name: "Swiggy Instamart",
+    bgColor: "bg-[#FF6600]",
+    textColor: "text-primary-foreground",
+    initial: "S",
+  },
   };
 
   const config = platformConfig[platform];
