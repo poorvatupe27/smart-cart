@@ -28,7 +28,7 @@ export function LoginScreen() {
       <div className="w-full max-w-sm space-y-8">
         {/* Logo */}
         <div className="flex flex-col items-center">
-          <img src={logo} alt="ClearChoice" className="h-50 w-auto" />
+          <img alt="ClearChoice" className="h-50 w-auto" src="/lovable-uploads/a2a11c37-6fb0-43fc-9ad9-d1ceac1b592c.png" />
           <p className="mt-4 text-center text-muted-foreground">
             Compare smarter. Spend less.
           </p>
