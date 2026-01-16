@@ -5,17 +5,11 @@ import { Search, Sparkles, ShoppingCart, TrendingDown, Zap, Target } from "lucid
 import logo from "@/assets/logo.png";
 import { PlatformLogosRow } from "@/components/PlatformLogos";
 import { AIQuickActions } from "@/components/AIQuickActions";
-
 export default function Home() {
-  return (
-    <div className="min-h-screen gradient-hero">
+  return <div className="min-h-screen gradient-hero">
       {/* Hero Section */}
       <section className="container flex flex-col items-center px-4 pb-8 pt-8 text-center md:pt-12">
-        <img 
-          src={logo} 
-          alt="ClearChoice" 
-          className="mb-6 h-16 w-auto md:h-20 object-contain drop-shadow-sm" 
-        />
+        <img alt="ClearChoice" className="mb-6 h-16 w-auto md:h-20 object-contain drop-shadow-sm" src="/lovable-uploads/ebafbcf3-4a8e-4baf-bbfd-0a2f2042aefd.png" />
         
         <h1 className="mb-3 text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
           Compare smarter.{" "}
@@ -72,39 +66,12 @@ export default function Home() {
         </h2>
         
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <FeatureCard
-            icon={<Search className="h-6 w-6" />}
-            title="Product Discovery"
-            description="Search across platforms and compare prices instantly"
-          />
-          <FeatureCard
-            icon={<TrendingDown className="h-6 w-6" />}
-            title="Price Comparison"
-            description="See which platform offers the best deal for each item"
-          />
-          <FeatureCard
-            icon={<ShoppingCart className="h-6 w-6" />}
-            title="Cart Comparison"
-            description="Compare your entire cart across all platforms"
-          />
-          <FeatureCard
-            icon={<Target className="h-6 w-6" />}
-            title="Goal-Based Shopping"
-            description="Tell AI your goal - it builds the perfect basket"
-            isAI
-          />
-          <FeatureCard
-            icon={<Zap className="h-6 w-6" />}
-            title="Smart Optimization"
-            description="AI suggests splitting orders to maximize savings"
-            isAI
-          />
-          <FeatureCard
-            icon={<Sparkles className="h-6 w-6" />}
-            title="Intelligent Advice"
-            description="Get explanations on why one option is better"
-            isAI
-          />
+          <FeatureCard icon={<Search className="h-6 w-6" />} title="Product Discovery" description="Search across platforms and compare prices instantly" />
+          <FeatureCard icon={<TrendingDown className="h-6 w-6" />} title="Price Comparison" description="See which platform offers the best deal for each item" />
+          <FeatureCard icon={<ShoppingCart className="h-6 w-6" />} title="Cart Comparison" description="Compare your entire cart across all platforms" />
+          <FeatureCard icon={<Target className="h-6 w-6" />} title="Goal-Based Shopping" description="Tell AI your goal - it builds the perfect basket" isAI />
+          <FeatureCard icon={<Zap className="h-6 w-6" />} title="Smart Optimization" description="AI suggests splitting orders to maximize savings" isAI />
+          <FeatureCard icon={<Sparkles className="h-6 w-6" />} title="Intelligent Advice" description="Get explanations on why one option is better" isAI />
         </div>
       </section>
 
@@ -133,35 +100,29 @@ export default function Home() {
           </div>
         </Card>
       </section>
-    </div>
-  );
+    </div>;
 }
-
 function FeatureCard({
   icon,
   title,
   description,
-  isAI = false,
+  isAI = false
 }: {
   icon: React.ReactNode;
   title: string;
   description: string;
   isAI?: boolean;
 }) {
-  return (
-    <Card className="relative overflow-hidden p-5 transition-all hover:shadow-md">
-      {isAI && (
-        <div className="absolute right-2 top-2">
+  return <Card className="relative overflow-hidden p-5 transition-all hover:shadow-md">
+      {isAI && <div className="absolute right-2 top-2">
           <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">
             AI
           </span>
-        </div>
-      )}
+        </div>}
       <div className="mb-3 inline-flex rounded-xl bg-secondary p-2.5 text-primary">
         {icon}
       </div>
       <h3 className="mb-1 font-semibold text-foreground">{title}</h3>
       <p className="text-sm text-muted-foreground">{description}</p>
-    </Card>
-  );
+    </Card>;
 }
